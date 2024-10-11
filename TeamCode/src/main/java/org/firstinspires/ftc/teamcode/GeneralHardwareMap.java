@@ -46,8 +46,13 @@ public class GeneralHardwareMap {
         public VoltageSensor batteryVoltageSensor;
         public DcMotor frontLeft, frontRight, backLeft, backRight, slide;
         public DcMotor slurp;
-        public Servo clawHAngle, clawVAngle, slideLAngle, slideRAngle, clawL, clawR, plane;
+        //public Servo arm;
+        public final static double slideLAngle_HOME = 0.0;
+        public final static double slideLAngle_MIN_RANGE = 0.0;
+        public final static double slideLAngle_MAX_RANGE = 0.5;
+        //public Servo clawHAngle, clawVAngle, slideRAngle, clawL, clawR, plane;
         public WebcamName bonoboCam;
+        public Servo slideLAngle;
         public HuskyLens huskyLens;
         public DistanceSensor distanceSensor;
         public ColorSensor colorSensorCenter;
@@ -85,6 +90,10 @@ public class GeneralHardwareMap {
             slurp.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         }
+
+        public void initServo(String servoName) {
+            slideLAngle = this.opMode.hardwareMap.servo.get(servoName);
+        }
         /*
         public double getColor() {
             int red = colorSensor.red();
@@ -115,6 +124,9 @@ public class GeneralHardwareMap {
             pos = 0.8;
             //Initialize motors only if in teleOp
             if(opModeType.equals("TELEOP")) {
+                //slideLAngle = this.opMode.hardwareMap.servo.get("slideLAngle");
+                //slideLAngle.setPosition(slideLAngle_HOME);
+                //slideLAngle.setPosition(slideLAngle_MAX_RANGE);
 
                 frontLeft = this.opMode.hardwareMap.dcMotor.get("frontLeft");
                 frontLeft.setDirection(DcMotor.Direction.REVERSE);

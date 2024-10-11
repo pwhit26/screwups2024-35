@@ -14,6 +14,7 @@ import com.acmerobotics.roadrunner.ftc.Actions;
 // Non-RR imports
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -30,6 +31,17 @@ public class TestingAutonomousClass extends LinearOpMode {
     public void runOpMode() throws InterruptedException{
         // instantiate your MecanumDrive at a particular pose.
         MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, Math.toRadians(0)));
+        Servo clawHAngle;
+        Servo clawVAngle;
+        Servo slideLAngle;
+        Servo slideRAngle;
+        Servo clawL;
+        Servo clawR;
+        Servo plane;
+        final double slideLAngle_HOME = 0.0;
+        final double slideLAngle_MIN_RANGE = 0.0;
+        final double slideLAngle_MAX_RANGE = 0.5;
+        //OpMode opMode;
 
         int visionOutputPosition = 1;
 
@@ -91,6 +103,12 @@ public class TestingAutonomousClass extends LinearOpMode {
 
 
         waitForStart();
+        //slideLAngle = hardwareMap.servo.get("slideLAngle");
+        //slideLAngle.setPosition(slideLAngle_HOME);
+        //slideLAngle.setPosition(slideLAngle_MAX_RANGE);
+
+
+
 
         if (isStopRequested()) return;
 
