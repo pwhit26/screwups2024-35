@@ -23,6 +23,7 @@ public class AutonTest extends LinearOpMode{
 
             waitForStart();
         }
+        //Servo movement forever
         while (opModeIsActive())
         {
             slideLAngle.setPosition(arm_home);
