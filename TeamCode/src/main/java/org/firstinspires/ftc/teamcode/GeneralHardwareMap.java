@@ -150,6 +150,17 @@ public class GeneralHardwareMap {
             //telemetry.addData("Battery Voltage: ", batteryVoltageSensor.getVoltage());
             //telemetry.update();
         }
+        public void init()
+        {
+            frontLeft=opMode.hardwareMap.get(DcMotor.class,"frontLeft");
+            frontRight = opMode.hardwareMap.get(DcMotor.class, "frontRight");
+            backRight = opMode.hardwareMap.get(DcMotor.class, "backRight");
+            backLeft = opMode.hardwareMap.get(DcMotor.class, "backLeft");
+            frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+            backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+            frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+            backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        }
 
         public double averageLastContents(ArrayList<Double> arr, int LOOKBACK){
             int len = arr.size();
