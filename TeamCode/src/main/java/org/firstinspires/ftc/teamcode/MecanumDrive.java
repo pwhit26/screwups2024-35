@@ -1,3 +1,4 @@
+
 package org.firstinspires.ftc.teamcode;
 
 import androidx.annotation.NonNull;
@@ -58,12 +59,12 @@ public final class MecanumDrive {
         // TODO: fill in these values based on
         //   see https://ftc-docs.firstinspires.org/en/latest/programming_resources/imu/imu.html?highlight=imu#physical-hub-mounting
         public RevHubOrientationOnRobot.LogoFacingDirection logoFacingDirection =
-                RevHubOrientationOnRobot.LogoFacingDirection.LEFT;
+                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
         public RevHubOrientationOnRobot.UsbFacingDirection usbFacingDirection =
                 RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
 
         // drive model parameters
-        public double inPerTick = 0.0005951;
+        public double inPerTick = 0.00295312;
         public double lateralInPerTick = inPerTick;
         public double trackWidthTicks = 20164.7;//613.6
 
@@ -107,7 +108,6 @@ public final class MecanumDrive {
             new ProfileAccelConstraint(PARAMS.minProfileAccel, PARAMS.maxProfileAccel);
 
     public final DcMotorEx leftFront, leftBack, rightBack, rightFront;
-    //public DcMotor frontLeft, frontRight, backLeft, backRight, slide;
 
     public final VoltageSensor voltageSensor;
 
@@ -246,19 +246,6 @@ public final class MecanumDrive {
 
         FlightRecorder.write("MECANUM_PARAMS", PARAMS);
     }
-    /*public MecanumDrive(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br){
-
-        //set all the motors
-
-         frontLeft= fl;
-
-        frontRight = fr;
-
-        backLeft = bl;
-
-        backRight = br;
-
-    }*/
 
     public void setDrivePowers(PoseVelocity2d powers) {
         MecanumKinematics.WheelVelocities<Time> wheelVels = new MecanumKinematics(1).inverse(

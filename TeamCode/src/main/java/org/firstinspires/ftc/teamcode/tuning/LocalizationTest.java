@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.TankDrive;
 
 public class LocalizationTest extends LinearOpMode {
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode() throws  InterruptedException {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         if (TuningOpModes.DRIVE_CLASS.equals(MecanumDrive.class)) {
@@ -28,7 +28,7 @@ public class LocalizationTest extends LinearOpMode {
                                 -gamepad1.left_stick_y,
                                 -gamepad1.left_stick_x
                         ),
-                        -gamepad1.right_stick_x
+                        gamepad1.right_stick_x
                 ));
 
                 drive.updatePoseEstimate();
