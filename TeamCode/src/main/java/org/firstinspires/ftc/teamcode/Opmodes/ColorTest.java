@@ -5,12 +5,10 @@ import android.graphics.Color;
 import android.view.View;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.GeneralHardwareMap;
 
@@ -18,10 +16,6 @@ import org.firstinspires.ftc.teamcode.GeneralHardwareMap;
 @Config
 @TeleOp(name = "ColorTest", group = "Sensor")
 public class ColorTest extends LinearOpMode {
-
-
-
-
     GeneralHardwareMap gHMap = new GeneralHardwareMap(this);
 
 
@@ -51,7 +45,7 @@ public class ColorTest extends LinearOpMode {
         boolean bLedOn = true;
 
         // get a reference to our ColorSensor object.
-        colorSensor = gHMap.colorSensorCenter;
+        colorSensor = gHMap.colorWHAT;
 
         // Set the LED in the beginning
         colorSensor.enableLed(bLedOn);

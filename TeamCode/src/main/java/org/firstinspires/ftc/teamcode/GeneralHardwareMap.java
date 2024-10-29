@@ -53,11 +53,11 @@ public class GeneralHardwareMap {
         //public Servo clawHAngle, clawVAngle, slideRAngle, clawL, clawR, plane;
         public WebcamName bonoboCam;
         public Servo slideLAngle;
-        public HuskyLens huskyLens;
+        //public HuskyLens huskyLens;
         public DistanceSensor distanceSensor;
-        public ColorSensor colorSensorCenter;
-        public ColorSensor colorSensorLeft;
-        public ColorSensor colorSensorRight;
+        public ColorSensor colorWHAT;
+        //public ColorSensor colorSensorLeft;
+        //public ColorSensor colorSensorRight;
         public BNO055IMU gyro;//Can we do it?
 
         public boolean halfSpeedToggle = true;
@@ -113,11 +113,11 @@ public class GeneralHardwareMap {
         public void init(String opModeType) {
 
             //Always intialize these
-            huskyLens = this.opMode.hardwareMap.get(HuskyLens.class, "huskylens");
+            //huskyLens = this.opMode.hardwareMap.get(HuskyLens.class, "huskylens");
             distanceSensor = this.opMode.hardwareMap.get(DistanceSensor.class, "distanceSensor");
-            colorSensorCenter = this.opMode.hardwareMap.get(ColorSensor.class, "colorSensorCenter");
-            colorSensorLeft = this.opMode.hardwareMap.get(ColorSensor.class, "colorSensorRight");
-            colorSensorRight = this.opMode.hardwareMap.get(ColorSensor.class, "colorSensorLeft");
+            colorWHAT = this.opMode.hardwareMap.get(ColorSensor.class, "colorSensorCenter");
+            //colorSensorLeft = this.opMode.hardwareMap.get(ColorSensor.class, "colorSensorRight");
+            //colorSensorRight = this.opMode.hardwareMap.get(ColorSensor.class, "colorSensorLeft");
 
             VoltageSensor batteryVoltageSensor = this.opMode.hardwareMap.voltageSensor.iterator().next();
 
