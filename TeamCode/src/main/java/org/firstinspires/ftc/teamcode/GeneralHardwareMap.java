@@ -141,6 +141,9 @@ public class GeneralHardwareMap {
 
                 backRight = this.opMode.hardwareMap.dcMotor.get("backRight");
                 backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+                slide = this.opMode.hardwareMap.dcMotor.get("slide1");
+                slide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             }
 
 
@@ -156,10 +159,12 @@ public class GeneralHardwareMap {
             frontRight = opMode.hardwareMap.get(DcMotor.class, "frontRight");
             backRight = opMode.hardwareMap.get(DcMotor.class, "backRight");
             backLeft = opMode.hardwareMap.get(DcMotor.class, "backLeft");
+            slide = opMode.hardwareMap.get(DcMotor.class, "slide1");
             frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
             backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
             frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
             backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+            slide.setDirection(DcMotorSimple.Direction.REVERSE);
         }
 
         public double averageLastContents(ArrayList<Double> arr, int LOOKBACK){
