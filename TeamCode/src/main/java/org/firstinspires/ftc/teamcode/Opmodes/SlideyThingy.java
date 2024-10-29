@@ -28,19 +28,19 @@ public class SlideyThingy extends LinearOpMode {
 
         while(opModeIsActive())
         {
-            double slidePower1 = 0.5;
+            double slidePower = 0.5;
             double stop = 0.0;
 
 
             if (gamepad1.x)
             {
                 slideythingy1.setDirection(DcMotorSimple.Direction.FORWARD);
-                slideythingy1.setPower(slidePower1);
+                slideythingy1.setPower(slidePower);
             }
             else if (gamepad1.y)
             {
                 slideythingy1.setDirection(DcMotorSimple.Direction.REVERSE);
-                slideythingy1.setPower(slidePower1);
+                slideythingy1.setPower(slidePower);
             }
             else
             {
