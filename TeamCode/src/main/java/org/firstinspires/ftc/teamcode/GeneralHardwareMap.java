@@ -11,6 +11,7 @@ import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.dfrobot.HuskyLens;
+import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -45,6 +46,7 @@ public class GeneralHardwareMap {
         //Define all hardware
         public VoltageSensor batteryVoltageSensor;
         public DcMotor frontLeft, frontRight, backLeft, backRight, slide;
+        public Limelight3A limelight;
         public DcMotor slurp;
         //public Servo arm;
         public final static double slideLAngle_HOME = 0.0;
@@ -53,7 +55,7 @@ public class GeneralHardwareMap {
         //public Servo clawHAngle, clawVAngle, slideRAngle, clawL, clawR, plane;
         public WebcamName bonoboCam;
         public Servo slideLAngle;
-        public Servo openClose, turnGrabber, wrist;
+        public Servo openClose, turnGrabber, wrist, active;
         //public HuskyLens huskyLens;
         public DistanceSensor distanceSensor;
         public ColorSensor colorWHAT;
@@ -119,6 +121,7 @@ public class GeneralHardwareMap {
             //huskyLens = this.opMode.hardwareMap.get(HuskyLens.class, "huskylens");
             distanceSensor = this.opMode.hardwareMap.get(DistanceSensor.class, "distanceSensor");
             colorWHAT = this.opMode.hardwareMap.get(ColorSensor.class, "colorSensorCenter");
+            limelight = this.opMode.hardwareMap.get(Limelight3A.class, "limelight");
             //colorSensorLeft = this.opMode.hardwareMap.get(ColorSensor.class, "colorSensorRight");
             //colorSensorRight = this.opMode.hardwareMap.get(ColorSensor.class, "colorSensorLeft");
 
@@ -150,6 +153,7 @@ public class GeneralHardwareMap {
                 openClose = this.opMode.hardwareMap.servo.get("openGrabber");
                 turnGrabber = this.opMode.hardwareMap.servo.get("turnGrabber");
                 wrist = this.opMode.hardwareMap.servo.get("wrist");
+                active = this.opMode.hardwareMap.servo.get("activeIn");
                 //new stuff
             }
 

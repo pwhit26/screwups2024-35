@@ -65,12 +65,12 @@ public class SlideyThingy extends LinearOpMode {
             {
                 wrist.setPosition(0.1);
             }
-            if (gamepad1.a)
-            {
-                openGrabber.setPosition(0.0);
-                turnGrabber.setPosition(0.0);
+            //if (gamepad1.a)
+            //{
+                //openGrabber.setPosition(0.0);
+                //turnGrabber.setPosition(0.0);
                 //wrist.setPosition(0.0);
-            }
+            //}
 
         }
         telemetry.addData("Status", "Run Time: " + runtime.toString());
