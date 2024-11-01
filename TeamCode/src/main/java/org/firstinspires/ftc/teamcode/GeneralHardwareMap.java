@@ -53,6 +53,7 @@ public class GeneralHardwareMap {
         //public Servo clawHAngle, clawVAngle, slideRAngle, clawL, clawR, plane;
         public WebcamName bonoboCam;
         public Servo slideLAngle;
+        public Servo openClose, turnGrabber, wrist;
         //public HuskyLens huskyLens;
         public DistanceSensor distanceSensor;
         public ColorSensor colorWHAT;
@@ -93,6 +94,8 @@ public class GeneralHardwareMap {
 
         public void initServo(String servoName) {
             slideLAngle = this.opMode.hardwareMap.servo.get(servoName);
+            openClose = this.opMode.hardwareMap.servo.get(servoName);
+            turnGrabber = this.opMode.hardwareMap.servo.get(servoName);
         }
         /*
         public double getColor() {
@@ -144,6 +147,9 @@ public class GeneralHardwareMap {
 
                 slide = this.opMode.hardwareMap.dcMotor.get("slide1");
                 slide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+                openClose = this.opMode.hardwareMap.servo.get("openGrabber");
+                turnGrabber = this.opMode.hardwareMap.servo.get("turnGrabber");
+                wrist = this.opMode.hardwareMap.servo.get("wrist");
             }
 
 

@@ -15,6 +15,9 @@ import com.qualcomm.robotcore.util.Range;
 public class SlideyThingy extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor slideythingy1;
+    private Servo openGrabber;
+    private Servo turnGrabber;
+    private Servo wrist;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -22,6 +25,9 @@ public class SlideyThingy extends LinearOpMode {
         telemetry.update();
         slideythingy1  = hardwareMap.get(DcMotor.class, "slide1");
         slideythingy1.setDirection(DcMotor.Direction.FORWARD);
+        openGrabber = hardwareMap.get(Servo.class, "openGrabber");
+        turnGrabber = hardwareMap.get(Servo.class, "turnGrabber");
+        wrist = hardwareMap.get(Servo.class, "wrist");
 
         waitForStart();
         runtime.reset();
@@ -46,6 +52,26 @@ public class SlideyThingy extends LinearOpMode {
             {
                 slideythingy1.setPower(stop);
             }
+
+            if (gamepad1.b)
+            {
+                openGrabber.setPosition(0.6);
+            }
+            if (gamepad1.dpad_up)
+            {
+                turnGrabber.setPosition(0.6);
+            }
+            if (gamepad1.dpad_down)
+            {
+                wrist.setPosition(0.1);
+            }
+            if (gamepad1.a)
+            {
+                openGrabber.setPosition(0.0);
+                turnGrabber.setPosition(0.0);
+                wrist.setPosition(0.0);
+            }
+
         }
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Slide", "extend");

@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class OppMode extends LinearOpMode { ;
     private Servo fakeservoTest;
 
+    //ALL SENSORS ARE GOING TO BE IN HERE
+
     @Override
     public void runOpMode() throws InterruptedException {
         fakeservoTest = hardwareMap.get(Servo.class, "slideLAngle");
