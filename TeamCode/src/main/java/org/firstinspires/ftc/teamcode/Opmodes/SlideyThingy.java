@@ -69,7 +69,7 @@ public class SlideyThingy extends LinearOpMode {
             {
                 openGrabber.setPosition(0.0);
                 turnGrabber.setPosition(0.0);
-                wrist.setPosition(0.0);
+                //wrist.setPosition(0.0);
             }
 
         }

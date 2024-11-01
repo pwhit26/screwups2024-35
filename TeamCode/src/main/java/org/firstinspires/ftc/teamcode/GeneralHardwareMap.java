@@ -150,6 +150,7 @@ public class GeneralHardwareMap {
                 openClose = this.opMode.hardwareMap.servo.get("openGrabber");
                 turnGrabber = this.opMode.hardwareMap.servo.get("turnGrabber");
                 wrist = this.opMode.hardwareMap.servo.get("wrist");
+                //new stuff
             }
 
 
