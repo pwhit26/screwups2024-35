@@ -55,28 +55,22 @@ public class SlideyThingy extends LinearOpMode {
 
             if (gamepad1.b)
             {
-                openGrabber.setPosition(0.6); //too far
-            }
-            else if (gamepad1.a)
-            {
-                openGrabber.setPosition(0.0);
+                openGrabber.setPosition(0.6);
             }
             if (gamepad1.dpad_up)
             {
-                turnGrabber.setPosition(0.7);
+                turnGrabber.setPosition(0.6);
             }
-            else if (gamepad1.dpad_down)
-            {
-                turnGrabber.setPosition(0);
-            }
-            if (gamepad1.dpad_right)
+            if (gamepad1.dpad_down)
             {
                 wrist.setPosition(0.1);
             }
-            else if (gamepad1.dpad_left)
-            {
-                wrist.setPosition(0.0);
-            }
+            //if (gamepad1.a)
+            //{
+                //openGrabber.setPosition(0.0);
+                //turnGrabber.setPosition(0.0);
+                //wrist.setPosition(0.0);
+            //}
 
         }
         telemetry.addData("Status", "Run Time: " + runtime.toString());
