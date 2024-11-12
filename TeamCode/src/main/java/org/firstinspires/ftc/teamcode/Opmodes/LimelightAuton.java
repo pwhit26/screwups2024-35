@@ -1,35 +1,79 @@
 package org.firstinspires.ftc.teamcode.Opmodes;
+
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.LLResultTypes;
-import com.qualcomm.hardware.limelightvision.LLStatus;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
-//import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-
-import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import java.util.List;
-@Autonomous(name="Limelight Auton", group="Limelight")
-public class LimelightAuton extends LinearOpMode{
+
+@Autonomous(name = "Autonomous: Color Detection", group = "Autonomous")
+public class LimelightAuton extends LinearOpMode {
+
     private Limelight3A limelight;
 
     @Override
     public void runOpMode() throws InterruptedException {
+        // Initialize Limelight camera
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
+        limelight.pipelineSwitch(0); // Start with pipeline 0
+        limelight.start(); // Begin data polling
 
-        telemetry.setMsTransmissionInterval(11);
-
-        limelight.pipelineSwitch(0);
-
-        limelight.start();
-
-        telemetry.addData(">", "Robot Ready.  Press Play.");
+        telemetry.addData("Status", "Initialized, Waiting for Start");
         telemetry.update();
         waitForStart();
 
+        if (opModeIsActive()) {
+            while (opModeIsActive()) {
+                // Get the latest result from Limelight
+                LLResult result = limelight.getLatestResult();
+
+                if (result != null && result.isValid()) {
+                    // Get color results
+                    List<LLResultTypes.ColorResult> colorResults = result.getColorResults();
+                    boolean redDetected = false;
+                    boolean blueDetected = false;
+
+                    for (LLResultTypes.ColorResult colorResult : colorResults) {
+                        double colorX = colorResult.getTargetXDegrees();
+                        double colorY = colorResult.getTargetYDegrees();
+
+                        // Sample logic for red and blue detection based on position or other parameters
+                        if (isRed(colorX, colorY)) {
+                            redDetected = true;
+                            telemetry.addData("Detected Color", "Red");
+                            // Add action for red detection
+                            // e.g., move robot or activate mechanism
+                        } else if (isBlue(colorX, colorY)) {
+                            blueDetected = true;
+                            telemetry.addData("Detected Color", "Blue");
+                            // Add action for blue detection
+                            // e.g., move robot or activate mechanism
+                        }
+                    }
+
+                    if (!redDetected && !blueDetected) {
+                        telemetry.addData("Color", "No target color detected");
+                    }
+                } else {
+                    telemetry.addData("Limelight", "No valid data");
+                }
+
+                telemetry.update();
+            }
+        }
+        limelight.stop();
     }
 
+    // Helper methods to determine if the detected color matches red or blue based on position/criteria
+    private boolean isRed(double x, double y) {
+        // Custom logic to define what constitutes "red" target - adjust based on your criteria
+        return x > -10 && x < 10 && y > -10 && y < 10; // Example values
+    }
 
-
+    private boolean isBlue(double x, double y) {
+        // Custom logic to define what constitutes "blue" target - adjust based on your criteria
+        return x < -10 && x > -20 && y < 10 && y > -10; // Example values
+    }
 }

@@ -45,7 +45,7 @@ public class GeneralHardwareMap {
 
         //Define all hardware
         public VoltageSensor batteryVoltageSensor;
-        public DcMotor frontLeft, frontRight, backLeft, backRight, slide;
+        public DcMotor frontLeft, frontRight, backLeft, backRight, slide, shoulder;
         public Limelight3A limelight;
         public DcMotor slurp;
         //public Servo arm;
@@ -154,6 +154,7 @@ public class GeneralHardwareMap {
                 turnGrabber = this.opMode.hardwareMap.servo.get("turnGrabber");
                 wrist = this.opMode.hardwareMap.servo.get("wrist");
                 active = this.opMode.hardwareMap.servo.get("activeIn");
+                shoulder = this.opMode.hardwareMap.dcMotor.get("shoulder");
                 //new stuff
             }
 
