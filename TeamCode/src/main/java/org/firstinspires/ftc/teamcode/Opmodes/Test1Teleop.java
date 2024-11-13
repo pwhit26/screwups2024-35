@@ -17,7 +17,8 @@ public class Test1Teleop extends LinearOpMode {
     private Servo openGrabber;
     private Servo turnGrabber;
     private Servo wrist;
-    private DcMotor shoulder;
+    private Servo shoulderLeft;
+    private Servo shoulderRight;
     private DcMotor left1;
     private DcMotor left2;
     private DcMotor right1;
@@ -29,11 +30,14 @@ public class Test1Teleop extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         slideythingy1  = hardwareMap.get(DcMotor.class, "slide1");
-        slideythingy1.setDirection(DcMotor.Direction.FORWARD);
+        slideythingy1.setDirection(DcMotor.Direction.REVERSE);
+        slideythingy1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        slideythingy1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         openGrabber = hardwareMap.get(Servo.class, "openGrabber");
         turnGrabber = hardwareMap.get(Servo.class, "turnGrabber");
         wrist = hardwareMap.get(Servo.class, "wrist");
-        shoulder = hardwareMap.get(DcMotor.class, "shoulder");
+        shoulderLeft = hardwareMap.get(Servo.class, "lefty");
+        shoulderRight= hardwareMap.get(Servo.class, "righty");
         left1  = hardwareMap.get(DcMotor.class, "leftFront");
         left2  = hardwareMap.get(DcMotor.class, "leftBack");
         right1 = hardwareMap.get(DcMotor.class, "rightFront");
@@ -54,15 +58,13 @@ public class Test1Teleop extends LinearOpMode {
             rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
 
-            if (gamepad1.dpad_up)
+            if (gamepad1.dpad_up && slideythingy1.getCurrentPosition() < 3400)
             {
-                slideythingy1.setDirection(DcMotorSimple.Direction.FORWARD);
                 slideythingy1.setPower(slidePower1);
             }
-            else if (gamepad1.dpad_down)
+            else if (gamepad1.dpad_down && slideythingy1.getCurrentPosition() > 0)
             {
-                slideythingy1.setDirection(DcMotorSimple.Direction.REVERSE);
-                slideythingy1.setPower(slidePower1);
+                slideythingy1.setPower(-slidePower1);
             }
             else
             {
@@ -71,25 +73,24 @@ public class Test1Teleop extends LinearOpMode {
 
             if (gamepad1.x)
             {
-                shoulder.setDirection(DcMotorSimple.Direction.FORWARD);
-                shoulder.setPower(slidePower1);
+                shoulderLeft.setPosition
             }
             else if (gamepad1.y)
             {
-                shoulder.setDirection(DcMotorSimple.Direction.REVERSE);
-                shoulder.setPower(slidePower1);
+
             }
-            else {
-                shoulder.setPower(stop);
-            }
+
             if (gamepad1.left_bumper)
             {
                 openGrabber.setPosition(0.5);
-
             }
-            if (gamepad1.right_bumper)
+            else
             {
-                turnGrabber.setPosition(0.3);
+                openGrabber.setPosition(0.0);
+            }
+            else if (gamepad1.right_bumper)
+            {
+
 
             }
             if (gamepad1.b)
@@ -97,11 +98,19 @@ public class Test1Teleop extends LinearOpMode {
                 wrist.setPosition(0.5);
 
             }
-            if (gamepad1.a)
+            else if (gamepad1.a)
             {
-                openGrabber.setPosition(0.0);
-                turnGrabber.setPosition(0.0);
                 wrist.setPosition(0.0);
+            }
+
+            if (gamepad1.dpad_right)
+            {
+                turnGrabber.setPosition(0.3);
+            }
+
+            else if (gamepad1.dpad_left)
+            {
+                turnGrabber.setPosition(0.0);
             }
             left1.setPower(leftPower);
             left2.setPower(leftPower);
@@ -110,6 +119,7 @@ public class Test1Teleop extends LinearOpMode {
 
 
             telemetry.addData("Slide", "extend");
+            telemetry.addData("Slide", slideythingy1.getCurrentPosition());
             telemetry.addData("Grabber up/down at position:", " " + wrist.getPosition());
             telemetry.addData("Grabber turned at position:", " " + turnGrabber.getPosition());
             telemetry.addData("Grabber open at position:", " " + openGrabber.getPosition());
