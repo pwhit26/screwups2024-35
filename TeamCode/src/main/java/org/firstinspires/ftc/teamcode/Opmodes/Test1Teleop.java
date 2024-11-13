@@ -17,7 +17,7 @@ public class Test1Teleop extends LinearOpMode {
     private Servo openGrabber;
     private Servo turnGrabber;
     private Servo wrist;
-    private Servo shoulderLeft, shoulderRight;
+    private Servo shoulderLeft1, shoulderRight;
     private DcMotor left1;
     private DcMotor left2;
     private DcMotor right1;
@@ -35,7 +35,7 @@ public class Test1Teleop extends LinearOpMode {
         openGrabber = hardwareMap.get(Servo.class, "openGrabber");
         turnGrabber = hardwareMap.get(Servo.class, "turnGrabber");
         wrist = hardwareMap.get(Servo.class, "wrist");
-        shoulderLeft = hardwareMap.get(Servo.class, "shit2");
+        shoulderLeft1 = hardwareMap.get(Servo.class, "shit2");
         shoulderRight = hardwareMap.get(Servo.class, "shit1");
         left1  = hardwareMap.get(DcMotor.class, "leftFront");
         left2  = hardwareMap.get(DcMotor.class, "leftBack");
@@ -72,12 +72,12 @@ public class Test1Teleop extends LinearOpMode {
 
             if (gamepad1.x)
             {
-                shoulderLeft.setPosition(0.2);
+                shoulderLeft1.setPosition(0.2);
                 shoulderRight.setPosition(0.8);
             }
             else if (gamepad1.y)
             {
-                shoulderLeft.setPosition(0.8);
+                shoulderLeft1.setPosition(0.8);
                 shoulderRight.setPosition(0.2);
 
             }
