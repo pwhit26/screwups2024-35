@@ -1,12 +1,7 @@
 package org.firstinspires.ftc.teamcode.Opmodes;
-import com.acmerobotics.roadrunner.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import org.firstinspires.ftc.teamcode.GeneralHardwareMap;
-import org.firstinspires.ftc.teamcode.MecanumDrive;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
@@ -36,8 +31,8 @@ public class Test1Teleop extends LinearOpMode {
         openGrabber = hardwareMap.get(Servo.class, "openGrabber");
         turnGrabber = hardwareMap.get(Servo.class, "turnGrabber");
         wrist = hardwareMap.get(Servo.class, "wrist");
-        shoulderLeft = hardwareMap.get(Servo.class, "lefty");
-        shoulderRight= hardwareMap.get(Servo.class, "righty");
+        shoulderLeft = hardwareMap.get(Servo.class, "shit2");
+        shoulderRight= hardwareMap.get(Servo.class, "shit1");
         left1  = hardwareMap.get(DcMotor.class, "leftFront");
         left2  = hardwareMap.get(DcMotor.class, "leftBack");
         right1 = hardwareMap.get(DcMotor.class, "rightFront");
@@ -54,6 +49,7 @@ public class Test1Teleop extends LinearOpMode {
             double rightPower;
             double drive = -gamepad1.left_stick_y;
             double turn  =  gamepad1.right_stick_x;
+            double grabTurn = gamepad2.right_trigger;
             leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
             rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
@@ -73,49 +69,41 @@ public class Test1Teleop extends LinearOpMode {
 
             if (gamepad1.x)
             {
-                shoulderLeft.setPosition
+                shoulderRight.setPosition(0.7);
+                shoulderLeft.setPosition(0.3);
             }
             else if (gamepad1.y)
             {
-
+                shoulderRight.setPosition(0.2);
+                shoulderLeft.setPosition(0.8);
             }
 
-            if (gamepad1.left_bumper)
+            if (gamepad2.left_bumper)
             {
-                openGrabber.setPosition(0.5);
+                openGrabber.setPosition(0.4);
             }
             else
             {
                 openGrabber.setPosition(0.0);
             }
-            else if (gamepad1.right_bumper)
-            {
 
 
-            }
-            if (gamepad1.b)
+            if (gamepad2.b)
             {
                 wrist.setPosition(0.5);
 
             }
-            else if (gamepad1.a)
+            else if (gamepad2.a)
             {
                 wrist.setPosition(0.0);
             }
 
-            if (gamepad1.dpad_right)
-            {
-                turnGrabber.setPosition(0.3);
-            }
 
-            else if (gamepad1.dpad_left)
-            {
-                turnGrabber.setPosition(0.0);
-            }
             left1.setPower(leftPower);
             left2.setPower(leftPower);
             right1.setPower(rightPower);
             right2.setPower(rightPower);
+            turnGrabber.setPosition(grabTurn);
 
 
             telemetry.addData("Slide", "extend");
