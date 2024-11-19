@@ -48,7 +48,10 @@ public class checkColor extends LinearOpMode {
 
             // Display RGB, Alpha, and HSV values on telemetry
             telemetry.addData("LED", ledOn ? "On" : "Off");
-            telemetry.addData("Red  ", colorSensor.red());
+            if (colorSensor.red() > colorSensor.green() && colorSensor.red() > colorSensor.blue())
+            {
+                telemetry.addData("Red  ", colorSensor.red());
+            }
             telemetry.addData("Green", colorSensor.green());
             telemetry.addData("Blue ", colorSensor.blue());
             telemetry.addData("Alpha", colorSensor.alpha());

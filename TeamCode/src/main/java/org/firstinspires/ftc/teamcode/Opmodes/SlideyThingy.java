@@ -38,12 +38,12 @@ public class SlideyThingy extends LinearOpMode {
             double stop = 0.0;
 
 
-            if (gamepad1.x)
+            if (gamepad1.dpad_up)
             {
                 slideythingy1.setDirection(DcMotorSimple.Direction.FORWARD);
                 slideythingy1.setPower(slidePower1);
             }
-            else if (gamepad1.y)
+            else if (gamepad1.dpad_down)
             {
                 slideythingy1.setDirection(DcMotorSimple.Direction.REVERSE);
                 slideythingy1.setPower(slidePower1);
@@ -55,22 +55,29 @@ public class SlideyThingy extends LinearOpMode {
 
             if (gamepad1.b)
             {
-                openGrabber.setPosition(0.6);
+                openGrabber.setPosition(0.3);
             }
-            if (gamepad1.dpad_up)
+            else if (gamepad1.a)
+            {
+                openGrabber.setPosition(0.0);
+            }
+            if (gamepad1.x)
             {
                 turnGrabber.setPosition(0.6);
             }
-            if (gamepad1.dpad_down)
+            else if (gamepad1.y)
             {
-                wrist.setPosition(0.1);
+                turnGrabber.setPosition(0);
             }
-            //if (gamepad1.a)
-            //{
-                //openGrabber.setPosition(0.0);
-                //turnGrabber.setPosition(0.0);
-                //wrist.setPosition(0.0);
-            //}
+            if (gamepad1.right_bumper)
+            {
+                wrist.setPosition(0.6);
+            }
+            else if (gamepad1.left_bumper)
+            {
+                wrist.setPosition(0);
+            }
+
 
         }
         telemetry.addData("Status", "Run Time: " + runtime.toString());

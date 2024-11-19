@@ -27,7 +27,17 @@ public class ActiveIntake extends LinearOpMode {
             if (gamepad1.a)
             {
                 active.setDirection(CRServo.Direction.FORWARD);
-                active.setPower(0.5);
+                active.setPower(1.0);
+            }
+            else if (gamepad1.b)
+            {
+                active.setDirection(CRServo.Direction.REVERSE);
+                active.setPower(1.0);
+            }
+            else
+            {
+                active.setDirection(CRServo.Direction.FORWARD);
+                active.setPower(0);
             }
 
         }

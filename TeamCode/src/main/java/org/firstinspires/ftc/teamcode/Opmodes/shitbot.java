@@ -5,9 +5,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
-public class testy extends LinearOpMode {
+public class shitbot extends LinearOpMode {
     private Servo one;
     private Servo two;
+
+
     @Override
     public void runOpMode() throws InterruptedException {
         one = hardwareMap.get(Servo.class, "shit1");
@@ -16,13 +18,12 @@ public class testy extends LinearOpMode {
         telemetry.update();
         waitForStart();
         while (opModeIsActive()) {
-
             if (gamepad1.y) {
                 // move to 0 degrees.
-                one.setPosition(0.0);
+                one.setPosition(0);
                 two.setPosition(1.0);
             }
-            else if (gamepad1.x) {
+            if (gamepad1.x) {
                 // move to 90 degrees.
                 one.setPosition(0.5);
                 two.setPosition(0.5);
