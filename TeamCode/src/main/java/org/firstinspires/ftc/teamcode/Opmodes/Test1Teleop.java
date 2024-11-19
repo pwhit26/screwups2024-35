@@ -26,7 +26,7 @@ public class Test1Teleop extends LinearOpMode {
     private Servo openGrabber;
     private Servo turnGrabber;
     private Servo wrist;
-    private Servo shoulderLeft1, shoulderRight;
+    private Servo shoulderLeft1, shoulderRight1;
     private DcMotor left1;
     private DcMotor left2;
     private DcMotor right1;
@@ -47,7 +47,7 @@ public class Test1Teleop extends LinearOpMode {
         turnGrabber = hardwareMap.get(Servo.class, "turnGrabber");
         wrist = hardwareMap.get(Servo.class, "wrist");
         shoulderLeft1 = hardwareMap.get(Servo.class, "shit2");
-        shoulderRight = hardwareMap.get(Servo.class, "shit1");
+        shoulderRight1 = hardwareMap.get(Servo.class, "shit1");
         left1 = hardwareMap.get(DcMotor.class, "leftFront");
         left2 = hardwareMap.get(DcMotor.class, "leftBack");
         right1 = hardwareMap.get(DcMotor.class, "rightFront");
@@ -109,26 +109,26 @@ public class Test1Teleop extends LinearOpMode {
             if (gamepad1.x)
             {
                 shoulderLeft1.setPosition(0.25);
-                shoulderRight.setPosition(0.75);
+                shoulderRight1.setPosition(0.75);
             }
             else if (gamepad1.y)
             {
                 shoulderLeft1.setPosition(0.75);
-                shoulderRight.setPosition(0.25);
+                shoulderRight1.setPosition(0.25);
 
             }
             else if (gamepad1.a)
             {
                 shoulderLeft1.setPosition(0.23);
-                shoulderRight.setPosition(0.77);
+                shoulderRight1.setPosition(0.77);
             }
 
                 if (gamepad2.right_stick_y < 0.15) {
                     shoulderLeft1.setPosition(shoulderLeft1.getPosition() - 0.05 * gamepad2.right_stick_y);
-                    shoulderRight.setPosition(shoulderRight.getPosition() + 0.05 * gamepad2.right_stick_y);
+                    shoulderRight1.setPosition(shoulderRight1.getPosition() + 0.05 * gamepad2.right_stick_y);
                 } else if (gamepad2.right_stick_y > 0.15) {
                     shoulderLeft1.setPosition(shoulderLeft1.getPosition() - 0.05 * gamepad2.right_stick_y);
-                    shoulderRight.setPosition(shoulderRight.getPosition() + 0.05 * gamepad2.right_stick_y);
+                    shoulderRight1.setPosition(shoulderRight1.getPosition() + 0.05 * gamepad2.right_stick_y);
                 }
                 /*else {
                     shoulderLeft1.setPosition(shoulderLeft1.getPosition());
