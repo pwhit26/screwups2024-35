@@ -53,9 +53,8 @@ public class GeneralHardwareMap {
         public final static double slideLAngle_MIN_RANGE = 0.0;
         public final static double slideLAngle_MAX_RANGE = 0.5;
         //public Servo clawHAngle, clawVAngle, slideRAngle, clawL, clawR, plane;
-        public WebcamName bonoboCam;
-        public Servo slideLAngle;
-        public Servo openClose, turnGrabber, wrist, active;
+        //public WebcamName bonoboCam;
+        public Servo openClose, turnGrabber, wrist, active, slideLAngle;
         //public HuskyLens huskyLens;
         public DistanceSensor distanceSensor;
         public ColorSensor colorWHAT;
