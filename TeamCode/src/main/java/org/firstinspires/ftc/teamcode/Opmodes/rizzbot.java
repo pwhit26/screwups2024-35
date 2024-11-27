@@ -34,13 +34,12 @@ public class rizzbot extends LinearOpMode {
             slideythingy1.setMode(DcMotor.RunMode.RUN_USING_ENCODER); //IF PROBLEM CHANGE TO RUN_TO_POSITION
             slideythingy1.setDirection(DcMotor.Direction.REVERSE);
             slideythingy1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            slideythingy1.setTargetPosition(0);
             openGrabber = hardwareMap.get(Servo.class, "openGrabber");
             openGrabber.setPosition(0.0);
             turnGrabber = hardwareMap.get(Servo.class, "turnGrabber");
-            openGrabber.setPosition(0.35);
+            turnGrabber.setPosition(0.35);
             wrist = hardwareMap.get(Servo.class, "wrist");
-            wrist.setPosition(0.6);
+            wrist.setPosition(0.5);
             shoulderLeft1 = hardwareMap.get(Servo.class, "shit2");
             shoulderLeft1.setPosition(0.3);
             shoulderRight1 = hardwareMap.get(Servo.class, "shit1");
@@ -56,7 +55,7 @@ public class rizzbot extends LinearOpMode {
             runtime.reset();
 
             while (opModeIsActive()) {
-                double slidePower1 = 0.8;
+                double slidePower1 = 1.0;
                 double stop = 0.0;
                 double leftPower;
                 double rightPower;
@@ -87,7 +86,7 @@ public class rizzbot extends LinearOpMode {
                 }
 
 
-                if (gamepad2.dpad_up && slideythingy1.getCurrentPosition() < 3400) {
+                if (gamepad2.dpad_up && slideythingy1.getCurrentPosition() < 2939) {
                     slideythingy1.setPower(slidePower1);
                 } else if (gamepad2.dpad_down && slideythingy1.getCurrentPosition() > 0) {
                     slideythingy1.setPower(-slidePower1);
@@ -107,14 +106,14 @@ public class rizzbot extends LinearOpMode {
                 }
                 else if (gamepad1.a && !gamepad1.b && !gamepad1.x && !gamepad1.y)
                 {
-                    shoulderLeft1.setPosition(0.7);
-                    shoulderRight1.setPosition(0.3);
+                    shoulderLeft1.setPosition(1.0);
+                    shoulderRight1.setPosition(0.0);
 
                 }
                 else if (gamepad1.y && !gamepad1.b && !gamepad1.a && !gamepad1.x)
                 {
-                    shoulderLeft1.setPosition(0.23);
-                    shoulderRight1.setPosition(0.77);
+                    shoulderLeft1.setPosition(0.0);
+                    shoulderRight1.setPosition(1.0);
                 }
 
                 if (gamepad1.right_trigger < 0.15) {
@@ -135,27 +134,17 @@ public class rizzbot extends LinearOpMode {
                     if (turnGrab) {
                         turnGrabber.setPosition(0.0);
                     } else if (turnGrab == false) {
-                        turnGrabber.setPosition(0.35);
+                        turnGrabber.setPosition(0.8);
                     }
-
                 }
                 if (gamepad2.a) {
                     wristBool = !wristBool;
                     if (wristBool) {
                         wrist.setPosition(1.0);
                     } else if (wristBool == false) {
-                        wrist.setPosition(0.6);
-                        //wrist.set
+                        wrist.setPosition(0.5);
                     }
-
-
                 }
-            /*if (gamepad1.a)
-            {
-                openGrabber.setPosition(0.0);
-                turnGrabber.setPosition(0.95);
-                wrist.setPosition(0.05);
-            }*/
 
 
                 telemetry.addData("Slide", "extend");
