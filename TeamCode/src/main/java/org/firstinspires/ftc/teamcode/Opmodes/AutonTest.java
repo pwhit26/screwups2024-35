@@ -23,9 +23,14 @@ public class AutonTest extends LinearOpMode{
 
 
 
-    Action myTraj;
+    Action myTraj1;
+    Action trajSpline1;
+    Action trajToBucket;
     Servo shit1;
     Servo shit2;
+    private Servo wrist;
+    private Servo openGrabber;
+    private Servo turnGrabber;
 
 
 
@@ -53,15 +58,28 @@ public class AutonTest extends LinearOpMode{
 
     @Override
     public void runOpMode() throws InterruptedException {
-        Vector2d myVector = new Vector2d(20, 0);
-        Pose2d myPose = new Pose2d(10, -5, Math.toRadians(90));
+        Vector2d myVector = new Vector2d(-48,55);
+        Vector2d second = new Vector2d(-55, 63);
+        Pose2d myPose = new Pose2d(0, 72, Math.toRadians(90));
         MecanumDrive drive = new MecanumDrive(hardwareMap, myPose);
         shit2 = hardwareMap.get(Servo.class, "shit2");
         shit1 = hardwareMap.get(Servo.class, "shit1");
+        wrist = hardwareMap.get(Servo.class, "wrist");
+        openGrabber = hardwareMap.get(Servo.class, "openGrabber");
+        turnGrabber = hardwareMap.get(Servo.class, "turnGrabber");
 
-        myTraj = drive.actionBuilder(new Pose2d(0, -5, Math.toRadians(90)))
+
+        myTraj1 = drive.actionBuilder(new Pose2d(0, 72, Math.toRadians(90)))
                 .strafeTo(myVector)
                 .build();
+        trajToBucket = drive.actionBuilder(new Pose2d(-48, 55, Math.toRadians(90)))
+                .strafeTo(second)
+                .build();
+        trajSpline1 = drive.actionBuilder(new Pose2d(0, 72, Math.toRadians(90)))
+                .splineTo(new Vector2d(-48, 55), Math.toRadians(90))
+                .build();
+
+
 
         /*leftFront  = hardwareMap.get(DcMotor.class, "leftFront");
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
@@ -91,15 +109,41 @@ public class AutonTest extends LinearOpMode{
 
 
             waitForStart();
-        shit1.setPosition(0.25);
-        shit2.setPosition(0.75);
-        sleep(2000);
+            wrist.setPosition(1.0);
+            openGrabber.setPosition(0.0);
+            shit1.setPosition(0.5);
+            shit2.setPosition(0.5);
+
+        sleep(1000);
         if(isStopRequested()){
             return;
         }
+        shit1.setPosition(0.5);
+        shit2.setPosition(0.5);
         Actions.runBlocking(
-                new SequentialAction(myTraj)
+                new SequentialAction(myTraj1)
         );
+
+        shit1.setPosition(0.5);
+        shit2.setPosition(0.5);
+        sleep(500);
+        openGrabber.setPosition(0.2);
+        turnGrabber.setPosition(0.35);
+        sleep(1000);
+        shit1.setPosition(0.23);
+        shit2.setPosition(0.77);
+        openGrabber.setPosition(0.0);
+        sleep(500);
+        shit1.setPosition(0.7);
+        shit2.setPosition(0.3);
+        Actions.runBlocking(
+                new SequentialAction(trajToBucket)
+        );
+        shit1.setPosition(0.7);
+        shit2.setPosition(0.3);
+        sleep(500);
+
+
 
 
 

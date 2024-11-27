@@ -40,12 +40,12 @@ public class SlideyThingy extends LinearOpMode {
 
             if (gamepad1.dpad_up)
             {
-                slideythingy1.setDirection(DcMotorSimple.Direction.FORWARD);
+                slideythingy1.setDirection(DcMotorSimple.Direction.REVERSE);
                 slideythingy1.setPower(slidePower1);
             }
             else if (gamepad1.dpad_down)
             {
-                slideythingy1.setDirection(DcMotorSimple.Direction.REVERSE);
+                slideythingy1.setDirection(DcMotorSimple.Direction.FORWARD);
                 slideythingy1.setPower(slidePower1);
             }
             else
@@ -53,35 +53,39 @@ public class SlideyThingy extends LinearOpMode {
                 slideythingy1.setPower(stop);
             }
 
-            if (gamepad1.b)
-            {
-                openGrabber.setPosition(0.3);
-            }
-            else if (gamepad1.a)
-            {
-                openGrabber.setPosition(0.0);
-            }
             if (gamepad1.x)
             {
-                turnGrabber.setPosition(0.6);
-            }
-            else if (gamepad1.y)
-            {
-                turnGrabber.setPosition(0);
-            }
-            if (gamepad1.right_bumper)
-            {
-                wrist.setPosition(0.6);
-            }
-            else if (gamepad1.left_bumper)
-            {
-                wrist.setPosition(0);
-            }
+                openGrabber.setPosition(0.2);
 
+            }
+            else {
+                openGrabber.setPosition(0.0);
+            }
+            if (gamepad1.y)
+            {
+                turnGrabber.setPosition(0.3);
+
+            }
+            if (gamepad1.b)
+            {
+                wrist.setPosition(0.5);
+
+            }
+            if (gamepad1.a)
+            {
+
+                turnGrabber.setPosition(0.0);
+                wrist.setPosition(0.0);
+            }
+            telemetry.addData("Slide", "extend");
+            telemetry.addData("Grabber up/down at position:", " " + wrist.getPosition());
+            telemetry.addData("Grabber turned at position:", " " + turnGrabber.getPosition());
+            telemetry.addData("Grabber open at position:", " " + openGrabber.getPosition());
+            telemetry.update();
 
         }
         telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Slide", "extend");
+
         telemetry.update();
     }
 }
