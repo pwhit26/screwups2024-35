@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.Opmodes;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.MecanumKinematics;
-
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.TimeTrajectory;
@@ -29,7 +28,7 @@ public class AutonTest extends LinearOpMode{
 
 
 
-    Action myTraj1, myTraj2, myTraj3;
+    Action myTraj1, myTraj2, myTraj3, myTraj4;
     public static double xpos, ypos;
     TrajectoryActionBuilder trajSpline1;
     TrajectoryActionBuilder trajToBucket;
@@ -80,7 +79,7 @@ public class AutonTest extends LinearOpMode{
         wrist = hardwareMap.get(Servo.class, "wrist");
         wrist.setPosition(0.52);
         openGrabber = hardwareMap.get(Servo.class, "openGrabber");
-        openGrabber.setPosition(0);
+        openGrabber.setPosition(0.1);
         turnGrabber = hardwareMap.get(Servo.class, "turnGrabber");
         turnGrabber.setPosition(0.8);
         slideythingy1 = hardwareMap.get(DcMotor.class, "slide1");
@@ -89,30 +88,25 @@ public class AutonTest extends LinearOpMode{
         slideythingy1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
-        myTraj1 = drive.actionBuilder(new Pose2d(xPosStart, yPosStart, Math.toRadians(90)))
+        myTraj1 = drive.actionBuilder(new Pose2d(-80, 35, Math.toRadians(90)))
                 .waitSeconds(0.5)
-                .strafeToLinearHeading(new Vector2d(-30, 55), Math.toRadians(90))
-                .waitSeconds(0.1)
-                .strafeToLinearHeading(new Vector2d(-30, 10), Math.toRadians(90))
-                .waitSeconds(0.1)
-                .strafeToLinearHeading(new Vector2d(-30, 55), Math.toRadians(90))
-                .waitSeconds(0.1)
-                .strafeToLinearHeading(new Vector2d(-25, 55), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(-25, 10), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-40, 57), Math.toRadians(90))
                 .build();
 
-        myTraj2 = drive.actionBuilder(new Pose2d(xPosStart, yPosStart, Math.toRadians(90)))
+        myTraj2 = drive.actionBuilder(new Pose2d(-64, 7, Math.toRadians(90)))
                 .waitSeconds(0.5)
-                .strafeToLinearHeading(new Vector2d(-80, 37), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-80, 35), Math.toRadians(90))
                 .build();
 
-        myTraj3 = drive.actionBuilder(new Pose2d(xPosStart, yPosStart, Math.toRadians(90)))
+        myTraj3 = drive.actionBuilder(new Pose2d(-80, 35, Math.toRadians(90)))
                 .waitSeconds(0.1)
-                .strafeToLinearHeading(new Vector2d(-80, 20), Math.toRadians(90))
-                .turn(Math.toRadians(180))
-                .strafeToLinearHeading(new Vector2d(-30, 12), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-40, 7), Math.toRadians(180))
                 .build();
 
+        myTraj4 = drive.actionBuilder(new Pose2d(xPosStart, yPosStart, Math.toRadians(90)))
+                .waitSeconds(0.1)
+                .strafeToLinearHeading(new Vector2d(-64, 7), Math.toRadians(90))
+                .build();
 
 
 
@@ -127,58 +121,62 @@ public class AutonTest extends LinearOpMode{
                 .splineTo(new Vector2d(-56, 48), Math.toRadians(90))
                 .splineTo(new Vector2d(-56, 24), Math.toRadians(90));*/
 
-            waitForStart();
-        openGrabber.setPosition(0);
-            sleep(500);
+        waitForStart();
+        openGrabber.setPosition(0.1);
+        sleep(500);
 
-            shoulderLeft1.setPosition(0.2);
-            shoulderRight1.setPosition(0.8);
-            wrist.setPosition(1);
+        shoulderLeft1.setPosition(0.2);
+        shoulderRight1.setPosition(0.8);
+        wrist.setPosition(1);
 
-            turnGrabber.setPosition(0.8);
+        turnGrabber.setPosition(0.8);
 
-            if (slideythingy1.getCurrentPosition() < 800)
+        Actions.runBlocking(new com.acmerobotics.roadrunner.SequentialAction(myTraj4));
+
+        sleep(200);
+
+        if (slideythingy1.getCurrentPosition() < 800)
+        {
+            while (slideythingy1.getCurrentPosition() < 800)
             {
-                while (slideythingy1.getCurrentPosition() < 800)
-                {
-                    slideythingy1.setPower(1);
-                }
-                slideythingy1.setPower(0);
+                slideythingy1.setPower(1);
+            }
+            slideythingy1.setPower(0);
+        }
+
+
+        Actions.runBlocking(new com.acmerobotics.roadrunner.SequentialAction(myTraj2));
+        sleep(500);
+        wrist.setPosition(0.45);
+        sleep(500);
+
+
+        if (slideythingy1.getCurrentPosition() > 500)
+        {
+            while (slideythingy1.getCurrentPosition() > 500)
+            {
+                slideythingy1.setPower(-1);
             }
 
+            slideythingy1.setPower(0);
 
-            Actions.runBlocking(new com.acmerobotics.roadrunner.SequentialAction(myTraj2));
-            sleep(500);
-            wrist.setPosition(0.45);
-            sleep(500);
-
-
-            if (slideythingy1.getCurrentPosition() > 500)
-            {
-                while (slideythingy1.getCurrentPosition() > 500)
-                {
-                    slideythingy1.setPower(-1);
-                }
-
-                slideythingy1.setPower(0);
-
-            }
+        }
         openGrabber.setPosition(0.5);
         shoulderLeft1.setPosition(0.15);
         shoulderRight1.setPosition(0.85);
-        //sleep(500);
+        sleep(500);
 
-        //Actions.runBlocking(new com.acmerobotics.roadrunner.SequentialAction(myTraj3));
+        Actions.runBlocking(new com.acmerobotics.roadrunner.SequentialAction(myTraj3));
 
-            //wrist.setPosition(1.0);``
-            //openGrabber.setPosition(0.0);
-            //shit1.setPosition(0.5);
-            //shit2.setPosition(0.5);
+        //wrist.setPosition(1.0);``
+        //openGrabber.setPosition(0.0);
+        //shit1.setPosition(0.5);
+        //shit2.setPosition(0.5);
 
         //sleep(1000);
-            if(isStopRequested()){
-                return;
-            }
+        if(isStopRequested()){
+            return;
+        }
         //shit1.setPosition(0.5);
         //shit2.setPosition(0.5);
 
@@ -197,7 +195,7 @@ public class AutonTest extends LinearOpMode{
         shit1.setPosition(0.7);
         shit2.setPosition(0.3);*/
         //Actions.runBlocking(
-                //new SequentialAction(trajToBucket)
+        //new SequentialAction(trajToBucket)
         //);
         //shit1.setPosition(0.7);
         //shit2.setPosition(0.3);
