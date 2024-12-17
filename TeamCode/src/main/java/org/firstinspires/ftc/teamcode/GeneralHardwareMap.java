@@ -2,12 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import java.util.ArrayList;
 
-
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.dfrobot.HuskyLens;
@@ -15,31 +10,23 @@ import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.robotcore.external.Predicate;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-
 
 import java.util.ArrayList;
 import java.util.Arrays;
 @Config
 public class GeneralHardwareMap {
 
-    //h
-
-
         //Define runtime
         public ElapsedTime runtime = new ElapsedTime();
 
         //Define opMode
-
         public OpMode opMode;
 
 
@@ -47,8 +34,6 @@ public class GeneralHardwareMap {
         public VoltageSensor batteryVoltageSensor;
         public DcMotor frontLeft, frontRight, backLeft, backRight, slide, shoulder;
         public Limelight3A limelight;
-        public DcMotor slurp;
-        //public Servo arm;
         public final static double slideLAngle_HOME = 0.0;
         public final static double slideLAngle_MIN_RANGE = 0.0;
         public final static double slideLAngle_MAX_RANGE = 0.5;
@@ -86,12 +71,6 @@ public class GeneralHardwareMap {
         }
 
         public GeneralHardwareMap(LinearOpMode opMode) {this.opMode = opMode;}
-
-        public void initRANDOMOTOR(String motorName) {
-            slurp = this.opMode.hardwareMap.dcMotor.get(motorName);
-            slurp.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        }
 
         public void initServo(String servoName) {
             slideLAngle = this.opMode.hardwareMap.servo.get(servoName);
@@ -164,19 +143,6 @@ public class GeneralHardwareMap {
             //telemetry.addData("Battery Voltage: ", batteryVoltageSensor.getVoltage());
             //telemetry.update();
         }
-        public void init()
-        {
-            frontLeft=opMode.hardwareMap.get(DcMotor.class,"frontLeft");
-            frontRight = opMode.hardwareMap.get(DcMotor.class, "frontRight");
-            backRight = opMode.hardwareMap.get(DcMotor.class, "backRight");
-            backLeft = opMode.hardwareMap.get(DcMotor.class, "backLeft");
-            slide = opMode.hardwareMap.get(DcMotor.class, "slide1");
-            frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-            backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-            frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-            backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-            slide.setDirection(DcMotorSimple.Direction.REVERSE);
-        }
 
         public double averageLastContents(ArrayList<Double> arr, int LOOKBACK){
             int len = arr.size();
@@ -187,15 +153,6 @@ public class GeneralHardwareMap {
             }
             return sum/count;
         }
-
-
-    /*
-    public void initForApril(){
-        WebcamName bonoboCam = hardwareMap.get(WebcamName.class, "Webcam 1");
-    }
-
-     */
-
 
 
     }
