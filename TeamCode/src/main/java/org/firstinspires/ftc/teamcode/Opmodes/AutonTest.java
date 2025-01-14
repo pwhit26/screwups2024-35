@@ -140,7 +140,7 @@ public class AutonTest extends LinearOpMode{
                 .splineTo(new Vector2d(-34, 48), Math.toRadians(90))
                 .waitSeconds(1)
                 .splineTo(new Vector2d(-34, 24), Math.toRadians(90))
-                .waitSeconds(0.5)
+
                 .splineTo(new Vector2d(-56, 48), Math.toRadians(90))
                 .splineTo(new Vector2d(-56, 24), Math.toRadians(90));*/
 
