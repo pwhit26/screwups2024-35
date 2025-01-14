@@ -56,7 +56,7 @@ public class GeneralHardwareMap {
         //public WebcamName bonoboCam;
         public Servo openClose, turnGrabber, wrist, active, slideLAngle;
         //public HuskyLens huskyLens;
-        public DistanceSensor distanceSensor;
+        public DistanceSensor distanceSensor, detect;
         public ColorSensor colorWHAT;
         //public ColorSensor colorSensorLeft;
         //public ColorSensor colorSensorRight;
@@ -119,6 +119,7 @@ public class GeneralHardwareMap {
             //Always intialize these
             //huskyLens = this.opMode.hardwareMap.get(HuskyLens.class, "huskylens");
             distanceSensor = this.opMode.hardwareMap.get(DistanceSensor.class, "distanceSensor");
+            detect = this.opMode.hardwareMap.get(DistanceSensor.class, "detect");
             colorWHAT = this.opMode.hardwareMap.get(ColorSensor.class, "colorSensorCenter");
             limelight = this.opMode.hardwareMap.get(Limelight3A.class, "limelight");
             //colorSensorLeft = this.opMode.hardwareMap.get(ColorSensor.class, "colorSensorRight");

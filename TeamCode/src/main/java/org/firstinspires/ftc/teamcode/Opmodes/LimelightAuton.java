@@ -34,18 +34,21 @@ public class LimelightAuton extends LinearOpMode {
                     List<LLResultTypes.ColorResult> colorResults = result.getColorResults();
                     boolean redDetected = false;
                     boolean blueDetected = false;
+                    //telemetry.addData("tx", result.getTx());
+                    //telemetry.addData("ty", result.getTy());
+                    //telemetry.addData("color result", result.getColorResults());
 
                     for (LLResultTypes.ColorResult colorResult : colorResults) {
                         double colorX = colorResult.getTargetXDegrees();
                         double colorY = colorResult.getTargetYDegrees();
 
                         // Sample logic for red and blue detection based on position or other parameters
-                        if (isRed(colorX, colorY)) {
+                        if (colorX > colorY) {
                             redDetected = true;
-                            telemetry.addData("Detected Color", "Red");
+                            telemetry.addData("Detected Color", "red");
                             // Add action for red detection
                             // e.g., move robot or activate mechanism
-                        } else if (isBlue(colorX, colorY)) {
+                        } else if (colorY > colorX) {
                             blueDetected = true;
                             telemetry.addData("Detected Color", "Blue");
                             // Add action for blue detection
@@ -66,14 +69,14 @@ public class LimelightAuton extends LinearOpMode {
         limelight.stop();
     }
 
-    // Helper methods to determine if the detected color matches red or blue based on position/criteria
+   /* // Helper methods to determine if the detected color matches red or blue based on position/criteria
     private boolean isRed(double x, double y) {
         // Custom logic to define what constitutes "red" target - adjust based on your criteria
-        return x > -10 && x < 10 && y > -10 && y < 10; // Example values
+        return x > 160 && x < 180 && y > -10 && y < 10; // Example values
     }
 
     private boolean isBlue(double x, double y) {
         // Custom logic to define what constitutes "blue" target - adjust based on your criteria
-        return x < -10 && x > -20 && y < 10 && y > -10; // Example values
-    }
+        return x < 125 && x > 100 && y < 10 && y > -10; // Example values
+    }*/
 }
