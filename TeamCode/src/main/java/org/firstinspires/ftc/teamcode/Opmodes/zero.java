@@ -16,16 +16,19 @@ public class zero extends LinearOpMode{
 
         @Override
         public void runOpMode() throws InterruptedException {
-            one = hardwareMap.get(Servo.class, "shit1");
-            two = hardwareMap.get(Servo.class, "shit2");
-            three = hardwareMap.get(Servo.class, "openGrabber");
+            //one = hardwareMap.get(Servo.class, "shit1");
+            //two = hardwareMap.get(Servo.class, "shit2");
+            //three = hardwareMap.get(Servo.class, "openGrabber");
             four = hardwareMap.get(Servo.class, "turnGrabber");
-            five = hardwareMap.get(Servo.class, "wrist");
+            //five = hardwareMap.get(Servo.class, "wrist");
             telemetry.addData("Status", "Initialized");
             telemetry.update();
             waitForStart();
             while (opModeIsActive()) {
-
+                four.setPosition(0);
+                sleep(1000);
+                four.setPosition(0.8);
+/*
                 if (gamepad1.y) {
                     // move to 0 degrees.
                     one.setPosition(0);
@@ -42,6 +45,8 @@ public class zero extends LinearOpMode{
                     four.setPosition(0.5);
                     five.setPosition(0.5);
                 }
+
+ */
                 telemetry.addData("Servo Position", one.getPosition());
                 telemetry.addData("Servo Position", two.getPosition());
                 telemetry.addData("Servo Position", three.getPosition());
@@ -52,4 +57,3 @@ public class zero extends LinearOpMode{
             }
         }
     }
-
