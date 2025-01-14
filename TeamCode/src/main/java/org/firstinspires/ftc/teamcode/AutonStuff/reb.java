@@ -76,6 +76,5 @@ public class reb extends LinearOpMode {
                 .turn(Math.toRadians(45))
                 .strafeToConstantHeading(new Vector2d(-46, -40))
                 .build();
-        back = drive.actionBuilder(new Pose2d(-46, -45, Math.toRadians(45)))
     }
 }
