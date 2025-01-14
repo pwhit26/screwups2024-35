@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Opmodes;
+/*package org.firstinspires.ftc.teamcode.Opmodes;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -20,8 +20,8 @@ public class MattMotor extends LinearOpMode {
     GeneralHardwareMap gHMap = new GeneralHardwareMap(this);
 
 
-    ColorSensor colorSensor;    // Hardware Device Object
-
+    //ColorSensor colorSensor;    // Hardware Device Object
+/*
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -51,3 +51,5 @@ public class MattMotor extends LinearOpMode {
     }
 }
 
+
+ */

@@ -1,6 +1,7 @@
 package com.example.meepmeeptesting2;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 
 import org.rowlandhall.meepmeep.MeepMeep;
 import org.rowlandhall.meepmeep.roadrunner.DefaultBotBuilder;
@@ -13,15 +14,22 @@ public class MeepMeepTesting2 {
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
-                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(0, 0, 0))
-                        .forward(30)
-                        .turn(Math.toRadians(90))
-                        .forward(30)
-                        .turn(Math.toRadians(90))
-                        .forward(30)
-                        .turn(Math.toRadians(90))
-                        .forward(30)
-                        .turn(Math.toRadians(90))
+                //REB
+                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(24, -60, Math.toRadians(90)))
+                        .lineToLinearHeading(new Pose2d(-46, -45, Math.toRadians(45)))
+                        .turn(Math.toRadians(45))
+                        .forward(5)
+                        .back(5)
+                        .turn(Math.toRadians(-45))
+                        .turn(Math.toRadians(45))
+                        .strafeLeft(12)
+                        .forward(5)
+                        .lineToLinearHeading(new Pose2d(-46, -45, Math.toRadians(45)))
+                        .turn(Math.toRadians(45))
+                        .strafeLeft(12)
+                        .forward(5)
+                        .turn(Math.toRadians(40))
+                        .lineToLinearHeading(new Pose2d(-46, -45, Math.toRadians(45)))
                         .build());
 
 
